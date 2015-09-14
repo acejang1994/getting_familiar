@@ -7,7 +7,7 @@ import rospy
 
 # we have to initialize ourselves as a roscore
 rospy.init_node('drive_square')
-pub = rospy.Publisher("/square", Twist, queue_size=1)
+pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 twist = Twist()
 
 def go():

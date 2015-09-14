@@ -23,7 +23,7 @@ def getKey():
     return key
 
 # Initiate node and topic, as well as time rate
-pub = rospy.Publisher('/communication', Twist, queue_size=10)
+pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 rospy.init_node('teleop_tranport')
 r = rospy.Rate(10)
 key = None
