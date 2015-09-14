@@ -1,0 +1,2 @@
+1. Since rosbag has all of the data, we can decipher the data and analyze anomolies that show up in our datastream. We can also reuse the data to test our code. We can also save different sensory data to different .bag files so we can debug in an isolated environment. 
+2. Since .bag file is only the data, it cannot completely simulate a robot.
