@@ -1,2 +1,27 @@
-1. Since rosbag has all of the data, we can decipher the data and analyze anomolies that show up in our datastream. We can also reuse the data to test our code. We can also save different sensory data to different .bag files so we can debug in an isolated environment. 
-2. Since .bag file is only the data, it cannot completely simulate a robot.
+A. RosBag
+
+1. How might rosbag fit into a debugging process as you work on projects in this class? 
+
+	Since rosbag has all of the data, we can decipher the data and analyze anomolies that show up in our datastream. We can also reuse the data to test our code. We can also save different sensory data to different .bag files so we can debug in an isolated environment. 
+
+2. Are there any obvious shortcomings of rosbag as a debugging tool?
+
+	Since .bag file is only the data, it cannot completely simulate a robot.
+
+B. Coordinate Systems and tf module
+
+1. Does the new behavior make sense?
+
+	The new behavior makes sense. The tf display added the coordinate axis with respect to the Neato. Moreover, it kept track of the vector connecting the origins of the "world" (odom) to the position of the Neato in the "world" coordinate.
+
+C. ROS callbacks and threading
+
+1. What happens when you run this code?  What assumption can you safely make about any code that you put in a sensor callback?  In what ways might the behavior you observe be suboptimal when programming a robot? 
+
+	We run the code with and without the sleep timer. Running the code without the timer, yielded that the listener would record data very fast, i.e. the most recently published values. By putting the sleep timer we were able to collect data every 10seconds. This action was taken under the assumption that "new data" are being received in this "dt=10" time frame. It is assumed that the callback function will always be getting the next "unseen" pending message in the series, instead of the most recent one. Having said that, this might be suboptimal if, for example, a spcific node runs slower than expected, resulting in an accumulated lag to build over time.
+
+2. What happens now?  In what scenarios is this behavior good?  In what scenarios is this behavior bad?
+
+	The listener now looks at the most published message in the callback function. By adding the queue factor we add an extr buffer in the process of determining the maximum number of data we are accepting at a time. This can be very useful in experiments where we need to accumulate data for proximity case studies. However, it might exclude important data that the listener might want to pay attention to. 
+
+
