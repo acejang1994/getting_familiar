@@ -36,13 +36,16 @@ while not rospy.is_shutdown():
 
 	# Key-based transformation
 	if key == 'w':
-	    linObj.x = 0.5
+	    linObj.x = 0.2
 	elif key == 'a':
-	    angObj.z = 1.0
+	    angObj.z = 0.4
 	elif key == 's':
-	    linObj.x = -0.5
+	    linObj.x = -0.2
 	elif key == 'd':
-	    angObj.z = -1.0
+	    angObj.z = -0.4
+	elif key == 'x':
+		linObj.x = 0.0
+		angObj.x = 0.0
 
 	# Publishes Twist Object and waits
 	disp = Twist(linObj, angObj)
